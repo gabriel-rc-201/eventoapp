@@ -1,7 +1,11 @@
 package com.eventoapp.eventoapp.controllers;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +38,19 @@ public class EventoController {
         Iterable<Evento> eventos = er.findAll();
 
         mv.addObject("eventos", eventos);
+
+        return mv;
+    }
+
+    @RequestMapping("/evento/{id}")
+    public ModelAndView detalhesEvento(@PathVariable("id") UUID id) {
+        Optional<Evento> evento = er.findById(id);
+
+        ModelAndView mv = new ModelAndView("evento/detalhesEvento");
+
+        Evento eventoObj = evento.get();
+
+        mv.addObject("evento", eventoObj);
 
         return mv;
     }
