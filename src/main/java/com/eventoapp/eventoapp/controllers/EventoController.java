@@ -25,10 +25,10 @@ public class EventoController {
 
         er.save(evento);
 
-        return "redirect:/cadastrarEvento";
+        return "redirect:/";
     }
 
-    @RequestMapping("/eventos")
+    @RequestMapping("/")
     public ModelAndView listaEventos() {
         ModelAndView mv = new ModelAndView("index");
         Iterable<Evento> eventos = er.findAll();
