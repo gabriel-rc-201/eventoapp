@@ -21,7 +21,7 @@ public class Convidado implements Serializable {
     @ManyToOne
     private Evento evento;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String rg;
 
     @Column(nullable = false)
