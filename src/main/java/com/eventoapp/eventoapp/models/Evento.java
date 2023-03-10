@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Evento implements Serializable {
@@ -18,9 +20,20 @@ public class Evento implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Column(nullable = false)
+    @NotEmpty
     private String nome;
+
+    @Column(nullable = false)
+    @NotEmpty
     private String local;
+
+    @Column(nullable = false)
+    @NotEmpty
     private String data;
+
+    @Column(nullable = false)
+    @NotEmpty
     private String horario;
 
     @OneToMany
