@@ -91,4 +91,12 @@ public class EventoController {
 
         return "redirect:/evento/" + id.toString();
     }
+
+    @RequestMapping("/deletarEvento")
+    public String deletarEvento(UUID id) {
+        Optional<Evento> evento = er.findById(id);
+        er.delete(evento.get());
+
+        return "redirect:/";
+    }
 }
