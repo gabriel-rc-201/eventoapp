@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Convidado implements Serializable {
@@ -22,9 +23,11 @@ public class Convidado implements Serializable {
     private Evento evento;
 
     @Column(nullable = false)
+    @NotEmpty
     private String rg;
 
     @Column(nullable = false)
+    @NotEmpty
     private String nomeConvidado;
 
     public Evento getEvento() {
