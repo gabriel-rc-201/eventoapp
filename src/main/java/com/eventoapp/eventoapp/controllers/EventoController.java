@@ -17,6 +17,7 @@ import com.eventoapp.eventoapp.models.Evento;
 import com.eventoapp.eventoapp.repositories.ConvidadoRepository;
 import com.eventoapp.eventoapp.repositories.EventoRepository;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @Controller
@@ -92,11 +93,26 @@ public class EventoController {
         return "redirect:/evento/" + id.toString();
     }
 
-    @RequestMapping("/deletarEvento")
-    public String deletarEvento(UUID id) {
-        Optional<Evento> evento = er.findById(id);
-        er.delete(evento.get());
+    @Transactional
+    @RequestMapping(value = "/deletarEvento/{id}")
+    public String deletarEvento(@PathVariable("id") UUID id) {
+        Optional<Evento> optionalEvento = er.findById(id);
+
+        Evento evento = optionalEvento.get();
+
+        er.delete(evento);
 
         return "redirect:/";
+    }
+
+    @Transactional
+    @RequestMapping("/deletarConvidado/{id}")
+    public String deletarConvidado(@PathVariable("id") UUID id) {
+        Optional<Convidado> convidado = cr.findById(id);
+        Evento evento = convidado.get().getEvento();
+
+        cr.delete(convidado.get());
+
+        return "redirect:/evento/" + evento.getId().toString();
     }
 }
