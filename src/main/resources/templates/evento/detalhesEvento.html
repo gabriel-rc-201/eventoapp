@@ -74,6 +74,7 @@
                 <tr>
                     <th>Nome Convidado</th>
                     <th>RG</th>
+                    <th>Deletar</th>
                 </tr>
             </thead>
             <tbody>
@@ -82,6 +83,14 @@
                         <span th:text="${convidado.nomeConvidado}"></span>
                     </td>
                     <td><span th:text="${convidado.rg}"></span></td>
+                    <td>
+                        <a
+                            class="waves-effect waves-light"
+                            th:href="${(#mvc.url('EC#deletarConvidado').arg(0,convidado.id)).build()}"
+                        >
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
