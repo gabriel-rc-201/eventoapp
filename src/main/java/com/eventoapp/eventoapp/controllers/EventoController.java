@@ -100,6 +100,8 @@ public class EventoController {
 
         Evento evento = optionalEvento.get();
 
+        cr.deleteAllByEvento(evento);
+
         er.delete(evento);
 
         return "redirect:/";

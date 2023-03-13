@@ -11,4 +11,6 @@ import com.eventoapp.eventoapp.models.Evento;
 @Repository
 public interface ConvidadoRepository extends JpaRepository<Convidado, UUID> {
     Iterable<Convidado> findByEvento(Evento evento);
+
+    void deleteAllByEvento(Evento evento);
 }
